@@ -1,0 +1,13 @@
+# Render Static Site – Vyan Office Solution
+# SPA rewrite ensures /services, /contact, etc. work on refresh.
+
+services:
+  - type: web
+    name: vyan-office-solution
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-black antialiased;
+}
+
+/* Skeleton shimmer animation for image loaders */
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
