@@ -1,5 +1,6 @@
 # Render Static Site – Vyan Office Solution
 # SPA rewrite ensures /services, /contact, etc. work on refresh.
+# Headers fix MIME type so CSS/JS load correctly (avoid text/plain).
 
 services:
   - type: web
@@ -7,6 +8,13 @@ services:
     runtime: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
+    headers:
+      - path: /**/*.css
+        name: Content-Type
+        value: text/css
+      - path: /**/*.js
+        name: Content-Type
+        value: application/javascript
     routes:
       - type: rewrite
         source: /*

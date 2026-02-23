@@ -32,18 +32,61 @@ Output is in `dist/`. Preview with:
 npm run preview
 ```
 
+## Push to GitHub
+
+Repo: **https://github.com/thankiuday/Vyanoffice.git**
+
+If this folder is not yet a git repo, run:
+
+```bash
+cd "c:\Users\Uday\OneDrive\Desktop\VyanOffice"
+git init
+git remote add origin https://github.com/thankiuday/Vyanoffice.git
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git push -u origin main
+```
+
+If you get a commit error (e.g. `unknown option trailer`), try:
+
+```bash
+git commit --no-verify -m "Initial commit"
+git push -u origin main
+```
+
+Or commit from VS Code/Cursor: Source Control → stage all → type message → Commit → Push, and set remote `origin` to the URL above.
+
+---
+
 ## Deploy on Render
 
-1. Push this repo to GitHub and connect the repo to [Render](https://render.com).
-2. Create a **Static Site** and connect the repository.
-3. Render will use the `render.yaml` in the repo:
+1. **Push this repo to GitHub** (see “Push to GitHub” above). Your repo: [thankiuday/Vyanoffice](https://github.com/thankiuday/Vyanoffice).
+
+2. **Open Render:** Go to [https://render.com](https://render.com) and sign in (or sign up with GitHub).
+
+3. **New Static Site:**  
+   Dashboard → **New +** → **Static Site**.
+
+4. **Connect repository:**  
+   Connect your GitHub account if needed, then select **thankiuday/Vyanoffice**. Click **Connect**.
+
+5. **Configure (Render can use `render.yaml` in the repo):**
+   - **Name:** `vyan-office-solution` (or any name)
+   - **Branch:** `main`
    - **Build command:** `npm install && npm run build`
    - **Publish directory:** `dist`
-   - **Routes:** `/*` → `/index.html` (rewrite) so SPA routes work on refresh.
-4. If you create the static site manually (without Blueprint), set the same build command and publish directory, and in **Redirects/Rewrites** add:
-   - **Source:** `/*`
-   - **Destination:** `/index.html`
-   - **Action:** Rewrite
+   - **Redirects/Rewrites (important for SPA):**  
+     Add one rule:
+     - **Type:** Rewrite  
+     - **Source:** `/*`  
+     - **Destination:** `/index.html`  
+
+   If you use the repo’s **Blueprint** (`render.yaml`), these settings and the rewrite are already defined.
+
+6. **Create Static Site:** Click **Create Static Site**. Render will clone the repo, run the build, and deploy. The first deploy may take a few minutes.
+
+7. **Your site URL:** After deploy you’ll get a URL like `https://vyan-office-solution.onrender.com`. You can add a custom domain later in the service’s **Settings**.
 
 ## Replace images
 
